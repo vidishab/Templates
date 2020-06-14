@@ -1,0 +1,46 @@
+public class binarysearch {
+
+    public static void  main(String args[])
+    {
+        int[] one = {2,3,4,5,6,10,14,24};
+        int result = binarysearchrecursive(one,0,one.length,14);
+        System.out.println(result);
+        result = binaryiterative(one,14);
+        System.out.println(result);
+        //return 0;
+    }
+    private static int binaryiterative(int[] one, int target)
+    {
+        int low=0;
+        int high=one.length;
+        while(low<=high)
+        {
+            int mid = low + (high-low)/2;
+            if(one[mid]==target)
+                return mid;
+            else if(target<mid)
+                high=mid-1;
+            else
+                low=mid+1;
+        }
+        return -1;
+    }
+    private static int binarysearchrecursive(int[] one, int low, int high,int target) {
+        //System.out.println(low+" "+high);
+        if(low>high)
+            return -1;
+        int mid = low + (high-low)/2;
+        if(one[mid]==target)
+        {
+            //System.out.println(mid);
+            return mid;
+        }
+        if(target<mid)
+        {
+            return binarysearchrecursive(one,low,mid-1,target);
+        }
+        else {
+            return binarysearchrecursive(one, mid + 1, high, target);
+        }
+    }
+}
